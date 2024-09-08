@@ -12,7 +12,7 @@ export async function GET() {
   try {
     const result = await query(`SELECT workout_log.id, workout_log.exercise, workout_log.repetitions, 
         workout_log.workout_date FROM workout_log JOIN "user" ON workout_log.user_id = "user".id WHERE 
-        "user".username = $1 AND workout_log.exercise = $2`, [username, 'Squats']
+        "user".username = $1 AND workout_log.exercise = $2 ORDER BY workout_log.created_time ASC`, [username, 'Squats']
 );
     return NextResponse.json(result.rows); // Send the workouts as JSON
   } catch (error) {

@@ -41,28 +41,6 @@ export const options: NextAuthOptions = {
         return false;
       }
     },
-    // Modify the session to include the user's name
-    async session({ session }) {
-      try {
-        // Safely check if session.user and session.user.email exist
-        if (session?.user?.email) {
-          const result = await query(
-            'SELECT username FROM "user" WHERE email = $1',
-            [session.user.email]
-          );
-
-          // If the username is found, add it to the session object
-          if (result.rows.length > 0) {
-            session.user.name = result.rows[0].username;
-          }
-        }
-
-        return session;
-      } catch (error) {
-        console.error("Error fetching user name:", error);
-        return session;
-      }
-    },
 
     /* // This callback is called to include custom user info in the session
     async session({ session, token, user }) {
