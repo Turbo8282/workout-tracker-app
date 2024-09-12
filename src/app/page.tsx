@@ -9,15 +9,6 @@ type Workout = {
 };
 
 export default function Home() {
-	const today = new Date();
-	const day = String(today.getDate()).padStart(2, "0"); // Add leading zero if necessary
-	const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed, so add 1
-	const year = today.getFullYear();
-	const formattedDate = `${day}/${month}/${year}`;
-	const [todayPushups, setTodayPushups] = useState(0);
-	const [todayPullups, setTodayPullups] = useState(0);
-	const [todaySquats, setTodaySquats] = useState(0);
-
 	// Define the state with the correct type
 	const [workouts, setWorkouts] = useState<Workout[]>([]);
 	const [pushups, setPushups] = useState<Workout[]>([]);
